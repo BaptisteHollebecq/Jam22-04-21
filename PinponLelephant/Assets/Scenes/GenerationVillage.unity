@@ -233,6 +233,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5358c1f7407afe4dbb3aaa812c2c9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HouseGenerator: {fileID: 1267667256}
+  Houses: []
+  MaxHouses: 50
+  FirePercent: 10
+  ScoreMultiplier: 2
+  MinMaxTimeRoll: {x: 5, y: 10}
+  TimeRollDivisions: 10
+  RegulationTick: 5
+  TickRate: 1
+  Happiness: 0.5
+  EnableDebug: 1
 --- !u!4 &1037977408
 Transform:
   m_ObjectHideFlags: 0
@@ -240,12 +251,44 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037977406}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 37.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
+  m_Father: {fileID: 1223294465}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1223294464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1223294465}
+  m_Layer: 0
+  m_Name: Game Master
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1223294465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223294464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1267667255}
+  - {fileID: 1037977408}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1267667254
 GameObject:
@@ -271,12 +314,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267667254}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1223294465}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1267667256
 MonoBehaviour:
@@ -290,21 +333,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5743f00dad92750488be1b301193f494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bounds: {x: 50, y: 50}
-  SizeSphereCast: 5
+  Bounds: {x: 100, y: 100}
+  SizeSphereCast: 7.5
   Ground:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
   House:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   HouseInstances:
   - {fileID: 8699512453946647563, guid: 5c8dca4776015f54cb55378c643ef37b, type: 3}
   - {fileID: 8291597004744447066, guid: b1a5f9ef3eade06479d353d8a63392f1, type: 3}
-  - {fileID: 5597458047787349902, guid: 0c091b6d89b00984d9b24888738bc0b9, type: 3}
-  StartSpawns: 50
+  - {fileID: 5045546193198499807, guid: 0c091b6d89b00984d9b24888738bc0b9, type: 3}
+  StartSpawns: 10
   TimeSpawn: 3
-  EnableDebug: 1
+  EnableDebug: 0
 --- !u!1 &1496365353
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +452,7 @@ GameObject:
   - component: {fileID: 2067735110}
   - component: {fileID: 2067735109}
   - component: {fileID: 2067735108}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Village Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +529,7 @@ Transform:
   m_GameObject: {fileID: 2067735107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2

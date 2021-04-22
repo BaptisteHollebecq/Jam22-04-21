@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class VillageManager : MonoBehaviour
 {
@@ -8,13 +9,16 @@ public class VillageManager : MonoBehaviour
 
     static VillageManager _instance;
 
-    public static VillageManager Instance { get; private set; }
+    public static VillageManager Instance { get { return _instance; } }
 
     public List<House> Houses;
 
     [Header("Values")]
     public int MaxHouses;
+    int _maxHouses;
     public float FirePercent;
+    public float ScoreMultiplier;
+    float _scoreMultiplier;
 
     [Header("Time")]
     public Vector2 MinMaxTimeRoll;
@@ -22,8 +26,10 @@ public class VillageManager : MonoBehaviour
     float _timeRoll;
     float _timeForRoll;
     float _timeForRegulation;
-    public float TimeRegulation;
     float _divide;
+
+    public float RegulationTick;
+    public float TickRate;
 
 
     [Header("Debug")]
@@ -32,6 +38,8 @@ public class VillageManager : MonoBehaviour
 
     private void Awake()
     {
+        Houses = new List<House>();
+
         if (_instance != null && _instance != this)
             Destroy(gameObject);
 
@@ -42,6 +50,9 @@ public class VillageManager : MonoBehaviour
     {
         _timeRoll = MinMaxTimeRoll.y;
         _divide = MinMaxTimeRoll.y / TimeRollDivisions;
+
+        _maxHouses = MaxHouses;
+        _scoreMultiplier = ScoreMultiplier;
     }
 
     private void Update()
@@ -59,7 +70,7 @@ public class VillageManager : MonoBehaviour
                 _timeRoll -= _divide;
         }
 
-        if(_timeForRegulation>=TimeRegulation)
+        if(_timeForRegulation>=RegulationTick)
         {
             _timeForRegulation = 0;
 
@@ -68,6 +79,17 @@ public class VillageManager : MonoBehaviour
 
             if(Houses.Count<MaxHouses)
                 RegulateVillage(false);
+        }
+
+        //debug Hapinesss
+        if(EnableDebug)
+        {
+            MaxHouses = (int)(_maxHouses*Happiness);
+            ScoreMultiplier = _scoreMultiplier * Happiness;
+        }
+        else
+        {
+            //intégrer le taff de baptiste
         }
     }
 
@@ -91,11 +113,13 @@ public class VillageManager : MonoBehaviour
                 }
             }
 
-            DestroyHouse(housesToDelete);
+            DeleteHouse(housesToDelete);
         }
         else
         {
             int newHouses = Random.Range(1, MaxHouses - Houses.Count);
+            if (newHouses > 3)
+                newHouses = 3;
 
             for (int i =0;i<newHouses;i++)
             {
@@ -128,7 +152,7 @@ public class VillageManager : MonoBehaviour
         }
     }
 
-    public void DestroyHouse(List<House> houses)
+    public void DeleteHouse(List<House> houses)
     {
         foreach (House house in houses)
             DestroyHouse(house);
@@ -136,6 +160,6 @@ public class VillageManager : MonoBehaviour
 
     public void DestroyHouse(House house)
     {
-
+        house.DestroyAnim(house.transform);
     }
 }

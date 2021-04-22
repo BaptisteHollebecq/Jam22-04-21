@@ -102,7 +102,11 @@ public class ProceduralGeneration : MonoBehaviour
         GameObject selected = HouseInstances[Random.Range(0, HouseInstances.Count)];
 
         GameObject instance = Instantiate(selected, SpawnPlace, rot, _houses);
-        VillageManager.Instance.Houses.Add(instance.GetComponent<House>());
+
+        if (instance.TryGetComponent(out House component))
+            VillageManager.Instance.Houses.Add(component);
+        else
+            Debug.Log("Can't Find House Component");
     }
 
     private void OnDrawGizmos()
