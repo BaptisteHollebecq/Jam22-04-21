@@ -52,7 +52,7 @@ public class PinPon : MonoBehaviour
     {
         transform.DOKill();
         float distance = Vector3.Distance(transform.position, currentTarget);
-
+        transform.forward = (currentTarget - transform.position).normalized;
         transform.DOMove(currentTarget, distance / MoveSpeed).SetEase(Ease.Linear).OnComplete(() =>
         {
             Path.Remove(currentTarget);
