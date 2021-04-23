@@ -36,8 +36,12 @@ public class VillageManager : MonoBehaviour
     [Range(0,1)]public float Happiness;
     public bool EnableDebug;
 
+    PinPon pinpon;
+
     private void Awake()
     {
+        pinpon = FindObjectOfType<PinPon>();
+
         Houses = new List<House>();
 
         if (_instance != null && _instance != this)
@@ -57,6 +61,7 @@ public class VillageManager : MonoBehaviour
 
     private void Update()
     {
+        Happiness = pinpon.Emotion;
         _timeForRoll += Time.deltaTime;
         _timeForRegulation += Time.deltaTime;
 
@@ -147,7 +152,10 @@ public class VillageManager : MonoBehaviour
             {
                 float fire = Random.Range(FirePercent, 100);
                 if (fire == FirePercent)
+                {
                     house.OnFire = true;
+                    house.Fire.SetActive(true);
+                }
             }
         }
     }

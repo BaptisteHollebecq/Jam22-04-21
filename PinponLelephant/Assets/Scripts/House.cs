@@ -11,6 +11,7 @@ public class House : MonoBehaviour
     [Header("Fire")]
     public bool OnFire;
     float _fireHealTick;
+    public GameObject Fire;
 
     public Transform HouseTransform;
 
@@ -22,6 +23,7 @@ public class House : MonoBehaviour
 
     private void Start()
     {
+        Fire.SetActive(false);
         Hp = MaxHp;
 
         Ruin.SetActive(false);
@@ -64,6 +66,7 @@ public class House : MonoBehaviour
         {
             OnFire = false;
             DestroyAnim(HouseTransform, true);
+            Fire.SetActive(false);
         }
     }
 

@@ -23,4 +23,9 @@ public class Villageois : MonoBehaviour
             });
         }
     }
+
+    public void Dead()
+    {
+
+    }
 }
