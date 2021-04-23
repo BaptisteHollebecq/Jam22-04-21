@@ -1,0 +1,10 @@
+Pinpon l'éléphant pompier
+
+Guillaume Lefebvre : Generation des maisons, gestion du feu et trailer
+Baptiste : Controller de Pinpon l'éléphant
+Livine: Assets de maisons
+Antoine : Modèle 3D de Pinpon, animations et logo
+Guillaume Leclercq : FX et rig de Pinpon
+Charles : Chef de groupe, GD
+
+

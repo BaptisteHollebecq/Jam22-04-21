@@ -25,6 +25,8 @@ public class PinPon : MonoBehaviour
     {
         WaterJet.SetActive(false);
 
+        SoundManager.PlayLoop("choupix", SoundManager.Sound.GameMusic);
+
         StartCoroutine(Hungry());
         StartCoroutine(Mood());
     }
