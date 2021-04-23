@@ -10,6 +10,7 @@ public class PinPon : MonoBehaviour
 
     public GameObject flags;
     public Animator animator;
+    public GameObject WaterJet;
 
     [Header("PinPon's Stats")]
     [Range(0, 1)] public float Emotion = .5f;
@@ -22,6 +23,8 @@ public class PinPon : MonoBehaviour
 
     private void Awake()
     {
+        WaterJet.SetActive(false);
+
         StartCoroutine(Hungry());
         StartCoroutine(Mood());
     }

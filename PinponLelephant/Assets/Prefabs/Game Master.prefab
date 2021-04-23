@@ -136,7 +136,7 @@ MonoBehaviour:
   HouseGenerator: {fileID: 6317263659730383286}
   Houses: []
   MaxHouses: 50
-  FirePercent: 15
+  FirePercent: 100
   ScoreMultiplier: 2
   MinMaxTimeRoll: {x: 5, y: 10}
   TimeRollDivisions: 10
