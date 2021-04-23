@@ -9,6 +9,7 @@ public class PinPon : MonoBehaviour
     public float MoveSpeed = 5;
 
     public GameObject flags;
+    public Animator animator;
 
     [Header("PinPon's Stats")]
     [Range(0, 1)] public float Emotion = .5f;
@@ -53,12 +54,14 @@ public class PinPon : MonoBehaviour
         transform.DOKill();
         float distance = Vector3.Distance(transform.position, currentTarget);
         transform.forward = (currentTarget - transform.position).normalized;
+        animator.SetBool("Walk", true);
         transform.DOMove(currentTarget, distance / MoveSpeed).SetEase(Ease.Linear).OnComplete(() =>
         {
             Path.Remove(currentTarget);
             Destroy(FlagPath[0]);
             FlagPath.RemoveAt(0);
             currentTarget = Vector3.zero;
+            animator.SetBool("Walk", false);
         });
     }
 
@@ -89,5 +92,6 @@ public class PinPon : MonoBehaviour
             currentTarget = Path[0];
             Move();
         }
+
     }
 }

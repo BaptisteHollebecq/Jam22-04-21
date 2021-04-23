@@ -34,13 +34,18 @@ public class FireFighter : MonoBehaviour
             if (!water && house.OnFire)
             {
                 water = true;
-
+                pinpon.animator.SetBool("Eau", true);
                 house.Hp += ((int)(pinpon.Emotion * 100) / 10);
 
                 if (house.Hp >= house.MaxHp)
                 {
                     house.OnFire = false;
                     house.Hp = house.MaxHp;
+                    pinpon.animator.SetBool("Eau", false);
+                    if (pinpon.animator.GetBool("Walk"))
+                        pinpon.animator.SetTrigger("EndEauWalk");
+                    else
+                        pinpon.animator.SetTrigger("EndEauIdle");
                     house.Fire.SetActive(false);
                 }
                 StartCoroutine(ResetWater());
